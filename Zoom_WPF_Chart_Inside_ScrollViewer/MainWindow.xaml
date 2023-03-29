@@ -12,7 +12,7 @@
         <local:ViewModel/>
     </Window.DataContext>
 
-    <ScrollViewer Margin="30" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Hidden" >
+    <local:ScrollViewerExt Margin="30" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Hidden" >
         <StackPanel>
             <chart:SfChart  x:Name="chart" Header="2018 Sales">
                 <chart:SfChart.Legend>
@@ -74,6 +74,6 @@
                 <chart:BarSeries XBindingPath="Name" YBindingPath="Sales" ItemsSource="{Binding Data}" ShowTooltip="True" />
             </chart:SfChart>
         </StackPanel>
-    </ScrollViewer>
+    </local:ScrollViewerExt>
     
 </Window>

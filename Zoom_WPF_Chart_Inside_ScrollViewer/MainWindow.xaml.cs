@@ -31,8 +31,7 @@ namespace Zoom_WPF_Chart_Inside_ScrollViewer
     {
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
-            //Handle the mouse event for chart to avoid vertical scrolling with mouse wheel.
-            //You can just use the scrollbar thumb to achieve vertical scrolling
+            // To restrict scroll action on chart
             if (e.Source is SfChart)
                 return;
             
