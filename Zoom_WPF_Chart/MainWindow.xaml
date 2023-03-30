@@ -1,0 +1,78 @@
+﻿<Window x:Class="Zoom_WPF_Chart.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zoom_WPF_Chart"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+         xmlns:chart="clr-namespace:Syncfusion.UI.Xaml.Charts;assembly=Syncfusion.SfChart.WPF">
+    
+    <Window.DataContext>
+        <local:ViewModel/>
+    </Window.DataContext>
+
+    <local:ScrollViewerExt Margin="30" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Hidden" >
+        <StackPanel>
+            <chart:SfChart  x:Name="chart" Header="2018 Sales">
+                <chart:SfChart.Legend>
+                    <chart:ChartLegend/>
+                </chart:SfChart.Legend>
+                <chart:SfChart.PrimaryAxis>
+                    <chart:DateTimeAxis LabelFormat="MMM dd">
+                    </chart:DateTimeAxis>
+                </chart:SfChart.PrimaryAxis>
+                <chart:SfChart.SecondaryAxis>
+                    <chart:NumericalAxis Interval="500"/>
+                </chart:SfChart.SecondaryAxis>
+                <chart:SfChart.Behaviors >
+                    <chart:ChartZoomPanBehavior EnableMouseWheelZooming="True" />
+                </chart:SfChart.Behaviors>
+                <chart:SplineSeries Label="ProductA" XBindingPath="Date" YBindingPath="Sales" ItemsSource="{Binding ProductA}" ShowTooltip="True">
+                    <chart:SplineSeries.AdornmentsInfo>
+                        <chart:ChartAdornmentInfo ShowMarker="True" SymbolInterior="Red" Symbol="Ellipse">
+                        </chart:ChartAdornmentInfo>
+                    </chart:SplineSeries.AdornmentsInfo>
+                </chart:SplineSeries>
+                <chart:SplineSeries Label="ProductB" XBindingPath="Date" YBindingPath="Sales" ItemsSource="{Binding ProductB}" ShowTooltip="True">
+                    <chart:SplineSeries.AdornmentsInfo>
+                        <chart:ChartAdornmentInfo ShowMarker="True" SymbolInterior="Green" Symbol="Ellipse">
+                        </chart:ChartAdornmentInfo>
+                    </chart:SplineSeries.AdornmentsInfo>
+                </chart:SplineSeries>
+            </chart:SfChart>
+
+            <chart:SfChart  x:Name="chart1" Header="2018 Sales- revenue and profit percent">
+                <chart:SfChart.Legend>
+                    <chart:ChartLegend/>
+                </chart:SfChart.Legend>
+                <chart:SfChart.PrimaryAxis>
+                    <chart:DateTimeAxis LabelFormat="MMM">
+                    </chart:DateTimeAxis>
+                </chart:SfChart.PrimaryAxis>
+                <chart:SfChart.SecondaryAxis>
+                    <chart:NumericalAxis Visibility="Hidden"/>
+                </chart:SfChart.SecondaryAxis>
+                <chart:SfChart.Behaviors >
+                    <chart:ChartZoomPanBehavior EnableMouseWheelZooming="True" />
+                </chart:SfChart.Behaviors>
+                <chart:ColumnSeries Label="Revenue" XBindingPath="Date" YBindingPath="Revenue" ItemsSource="{Binding Revenue}" ShowTooltip="True"/>
+                <chart:ColumnSeries Label="Profit" XBindingPath="Date" YBindingPath="Profit" ItemsSource="{Binding Profit}" ShowTooltip="True"/>
+            </chart:SfChart>
+
+            <chart:SfChart  x:Name="chart2" Header="Number of sales closed by Sales Rep - 2018">
+                <chart:SfChart.PrimaryAxis>
+                    <chart:CategoryAxis>
+                    </chart:CategoryAxis>
+                </chart:SfChart.PrimaryAxis>
+                <chart:SfChart.SecondaryAxis>
+                    <chart:NumericalAxis Interval="100" Maximum="300" />
+                </chart:SfChart.SecondaryAxis>
+                <chart:SfChart.Behaviors >
+                    <chart:ChartZoomPanBehavior EnableMouseWheelZooming="True" />
+                </chart:SfChart.Behaviors>
+                <chart:BarSeries XBindingPath="Name" YBindingPath="Sales" ItemsSource="{Binding Data}" ShowTooltip="True" />
+            </chart:SfChart>
+        </StackPanel>
+    </local:ScrollViewerExt>
+</Window>
